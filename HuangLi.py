@@ -21,10 +21,12 @@ from plugins import *
 class HuangLi(Plugin):  
     def __init__(self: str):  
         super().__init__()  # 调用父类的初始化
+        # 初始化配置
+        self.config = super().load_config()
         # 初始化插件配置
         self.base_url = "https://api.tanshuapi.com/api/almanac/v1/index"    
         # 获取探数API
-        self.api_key = conf().get("tan_shu_api_key")
+        self.api_key = self.config.get("tan_shu_api_key")
         # 注册处理上下文的事件  
         self.handlers[Event.ON_HANDLE_CONTEXT] = self.on_handle_context  
         logger.info("[HuangLi] 插件初始化完毕")
